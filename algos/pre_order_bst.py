@@ -1,3 +1,6 @@
+def search(tree, item_to_find):
+    return False
+
 def insert(tree, item_to_insert):
 
     if not tree: # tree length 0

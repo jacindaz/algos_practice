@@ -58,3 +58,11 @@ def test_bst_max(tree, expected):
 def test_bst_min(tree, expected):
     actual_min = bst.find_min(tree)
     assert actual_min == expected
+
+@pytest.mark.xfail
+@pytest.mark.parametrize("tree,item,expected", [
+    ([20, 10, 8, 30], 8, True),
+    ([0], 1, False),
+])
+def test_bst_search(tree, item, expected):
+    assert bst.search(tree, item) == expected
