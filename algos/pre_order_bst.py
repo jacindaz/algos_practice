@@ -1,5 +1,15 @@
 def insert(tree, item_to_insert):
-    print(tree)
+
+    if not tree: # tree length 0
+        return [item_to_insert]
+
+    if tree[0] == tree[-1]: # tree length 1
+        if item_to_insert < tree[0]:
+            tree.insert(0, item_to_insert)
+            return tree
+        elif item_to_insert > tree[0]:
+            tree.insert(1, item_to_insert)
+            return tree
 
     for index, item in enumerate(tree[1:], start=1):
 
