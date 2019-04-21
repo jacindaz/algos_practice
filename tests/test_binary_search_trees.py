@@ -27,10 +27,31 @@ import pytest
     pytest.param(
         {20: (10, 22)},
         20,
-        8,
-        {20: (10, 22), 10: (8, None)},
+        6,
+        {20: (10, 22), 10: (6, None)},
         id="insert_left_leaf_left_child"
     ),
+    pytest.param(
+        {20: (10, 22), 10: (6, None)},
+        20,
+        3,
+        {20: (10, 22), 10: (6, None), 6: (3, None)},
+        id="insert_left_leaf_left_child_level2"
+    ),
+    pytest.param(
+        {20: (10, 22), 10: (6, None), 6: (3, None)},
+        20,
+        1,
+        {20: (10, 22), 10: (6, None), 6: (3, None), 3: (1, None)},
+        id="insert_left_leaf_left_child_level3"
+    ),
+    pytest.param(
+        {20: (10, 22), 10: (6, None), 6: (4, None)},
+        20,
+        9,
+        {20: (10, 22), 10: (6, None), 6: (4, 9)},
+        id="insert_left_leaf_right_level3"
+    )
 ])
 def test_insert(tree, root, item_to_insert, expected):
     result = bst.insert(tree, item_to_insert, root)
