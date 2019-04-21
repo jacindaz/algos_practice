@@ -3,53 +3,34 @@ import pprint
 
 
 def insert(tree, item_to_insert, current_node):
-    # TODO: if tree has 0, 1, or 2 nodes
-    child_nodes = tree[current_node]
-    left_node = None
-    right_node = None
-    if child_nodes[0]:
-        left_node = child_nodes[0]
-    if child_nodes[1]:
-        right_node = child_nodes[1]
-
-    print("\n===================")
+    left_node, right_node = tree.get(current_node, (None, None))
+    print("\n==============")
     print(f"current_node: {current_node}")
-    pprint.pprint(tree)
-    print(f"\nchild_nodes: {child_nodes}")
+    print(f"left_node: {left_node}, right_node: {right_node}")
 
-    if item_to_insert > current_node:
-        right_node_children = tree.get(right_node)
-        if right_node and item_to_insert > right_node:
-            if right_node_children:
-                print("figure out recursion or something L35")
-            else:
-                tree[right_node] = (None, item_to_insert)
-                return tree
-
-        elif right_node and item_to_insert < right_node:
-            if right_node_children:
-                print("figure out recursion or something L42")
-            else:
-                tree[right_node] = (item_to_insert, None)
-                return tree
-        else:
-            tree[current_node] = (left_node, item_to_insert)
+    # base case
+    if tree.get(current_node) is None:
+        if item_to_insert > current_node:
+            tree[current_node] = (None, item_to_insert)
+            return tree
+        elif item_to_insert < current_node:
+            tree[current_node] = (item_to_insert, None)
             return tree
     else:
-        left_node_children = tree.get(left_node)
-        if left_node and item_to_insert > left_node:
-            if left_node_children:
-                print("figure out recursion or something L50")
-                return insert(tree, item_to_insert, left_node)
-            else:
-                tree[left_node] = (None, item_to_insert)
-                return tree
-        elif left_node and item_to_insert < left_node:
-            if left_node_children:
-                return insert(tree, item_to_insert, left_node)
-            else:
-                tree[left_node] = (item_to_insert, None)
-                return tree
+        if item_to_insert > current_node and right_node is None:
+            tree[current_node] = (left_node, item_to_insert)
+            return tree
+        elif item_to_insert < current_node and left_node is None:
+            tree[current_node] = (item_to_insert, right_node)
+            return tree
+
+    # if new item bigger than current node, go right
+    if item_to_insert > current_node:
+        return insert(tree, item_to_insert, right_node)
+    # if new item smaller than current node, go left
+    if item_to_insert < current_node:
+        return insert(tree, item_to_insert, left_node)
+
 
 def find_max(tree):
     max = tree[0]
