@@ -2,6 +2,55 @@ import algos.binary_search_trees as bst
 import pytest
 
 
+@pytest.mark.parametrize("tree,item_to_find,current_node,expected", [
+    (
+        {20: (10, None)},
+        8,
+        20,
+        False
+    ),
+    (
+        {20: (10, None)},
+        10,
+        20,
+        True
+    ),
+    (
+        {20: (10, 22), 10: (6, None), 6: (4, 9), 4: (1, 5)},
+        5,
+        20,
+        True
+    ),
+    (
+        {4: (1, 5), 10: (6, None), 6: (4, 9), 20: (10, 22)},
+        5,
+        30,
+        False
+    ),
+    (
+        {
+            4: (1, 5), 10: (6, None), 6: (4, 9), 20: (10, 22),
+            22: (21, 25)
+        },
+        30,
+        20,
+        False
+    ),
+    (
+        {
+            4: (1, 5), 10: (6, None), 6: (4, 9),
+            20: (10, 22), 22: (21, 25)
+        },
+        4,
+        20,
+        True
+    ),
+])
+def test_depth_first_search(tree, item_to_find, current_node, expected):
+    result = bst.depth_first_search(tree, item_to_find, current_node)
+    assert result == expected
+
+
 @pytest.mark.parametrize("tree,root,item_to_insert,expected", [
     pytest.param(
         {20: (10, None)},

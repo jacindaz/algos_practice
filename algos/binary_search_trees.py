@@ -1,6 +1,18 @@
 import ipdb
 import pprint
 
+def depth_first_search(tree, item_to_find, current_node):
+    left_node, right_node = tree.get(current_node, (None, None))
+    if current_node is None:
+        return False
+    elif item_to_find == current_node:
+        return True
+
+    if item_to_find > current_node:
+        return depth_first_search(tree, item_to_find, right_node)
+    elif item_to_find < current_node:
+        return depth_first_search(tree, item_to_find, left_node)
+
 
 def insert(tree, item_to_insert, current_node):
     left_node, right_node = tree.get(current_node, (None, None))
