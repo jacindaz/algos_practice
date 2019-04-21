@@ -44,13 +44,19 @@ def insert(tree, item_to_insert, current_node):
         return insert(tree, item_to_insert, left_node)
 
 
-def find_max(tree):
-    max = tree[0]
-    for item in tree:
-        if item > max:
-            max = item
+def find_max(tree, current_node, max=None):
+    left_node, right_node = tree.get(current_node, (None, None))
 
-    return max
+    if max is None:
+        max = current_node
+
+    if current_node and max <= current_node:
+        max = current_node
+        return find_max(tree, right_node, max)
+
+    if right_node is None:
+        return max
+
 
 def find_min(tree):
     min = tree[0]

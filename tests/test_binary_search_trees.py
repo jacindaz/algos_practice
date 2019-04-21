@@ -128,14 +128,38 @@ def test_insert(tree, root, item_to_insert, expected):
     assert dict(sorted(result.items())) == dict(sorted(expected.items()))
 
 
-@pytest.mark.parametrize("tree,expected", [
-    ([20, 10, 8, 30], 30),
-    ([25, 0], 25),
-    ([20, 12, 10, 8], 20),
-    ([1], 1)
+@pytest.mark.parametrize("tree,current_node,expected", [
+    (
+        {20: (10, 30), 10: (8, None)},
+        20,
+        30
+    ),
+    (
+        {25: (0, None)},
+        25,
+        25
+    ),
+    (
+        {10: (8, None), 12: (10, None), 20: (12, None)},
+        20,
+        20
+    ),
+    (
+        {1: (None, None)},
+        1,
+        1
+    ),
+    (
+        {
+            4: (1, 5), 10: (6, None), 6: (4, 9),
+            20: (10, 22), 22: (21, 25)
+        },
+        20,
+        25
+    )
 ])
-def test_bst_max(tree, expected):
-    actual_max = bst.find_max(tree)
+def test_bst_max(tree, current_node, expected):
+    actual_max = bst.find_max(tree, current_node)
     assert actual_max == expected
 
 
