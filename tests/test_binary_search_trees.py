@@ -1,41 +1,40 @@
-import algos.pre_order_bst as bst
+import algos.binary_search_trees as bst
 import pytest
 
-@pytest.mark.parametrize("tree,item_to_insert,expected", [
+
+@pytest.mark.parametrize("tree,root,item_to_insert,expected", [
     pytest.param(
-        [20, 10, 8, 25],
-        22,
-        [20, 10, 8, 22, 25],
-        id="insert_middle_1"
+        {20: (10, 22)},
+        20,
+        21,
+        {20: (10, 22), 22: (21, None)},
+        id="insert_middle_leaf"
     ),
     pytest.param(
-        [20, 10, 8, 25],
-        12,
-        [20, 12, 10, 8, 25],
-        id="insert_middle_2"
+        {20: (10, 22)},
+        20,
+        23,
+        {20: (10, 22), 22: (None, 23)},
+        id="insert_right_leaf_level1"
     ),
     pytest.param(
-        [25, 0],
-        30,
-        [25, 0, 30],
-        id="insert_end"
+        {20: (10, 22)},
+        20,
+        15,
+        {20: (10, 22), 10: (None, 15)},
+        id="insert_left_leaf_right_child"
     ),
     pytest.param(
-        [],
-        30,
-        [30],
-        id="insert_empty_tree"
-    ),
-    pytest.param(
-        [2],
-        3,
-        [2, 3],
-        id="insert_tree_length_1"
+        {20: (10, 22)},
+        20,
+        8,
+        {20: (10, 22), 10: (8, None)},
+        id="insert_left_leaf_left_child"
     ),
 ])
-def test_bst_insert(tree, item_to_insert, expected):
-    new_tree = bst.insert(tree, item_to_insert)
-    assert new_tree == expected
+def test_insert(tree, root, item_to_insert, expected):
+    result = bst.insert(tree, item_to_insert, root)
+    assert dict(sorted(result.items())) == dict(sorted(expected.items()))
 
 
 @pytest.mark.parametrize("tree,expected", [
