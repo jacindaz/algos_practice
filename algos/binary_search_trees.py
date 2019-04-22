@@ -48,11 +48,12 @@ def find_max_iterate(tree, current_node):
 
     iterate_node = current_node
     while tree.get(iterate_node) != None:
-        if tree[iterate_node][1] is None:
+        right_node = tree[iterate_node][1]
+        if right_node is None:
             break
-        elif max <= tree[iterate_node][1]:
-            max = tree[iterate_node][1]
-            iterate_node = tree[iterate_node][1]
+        elif max <= right_node:
+            max = right_node
+            iterate_node = right_node
 
     return max
 
