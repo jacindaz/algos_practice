@@ -13,7 +13,6 @@ def depth_first_search(tree, item_to_find, current_node):
     elif item_to_find < current_node:
         return depth_first_search(tree, item_to_find, left_node)
 
-
 def insert(tree, item_to_insert, current_node):
     left_node, right_node = tree.get(current_node, (None, None))
     print("\n==============")
@@ -44,15 +43,29 @@ def insert(tree, item_to_insert, current_node):
         return insert(tree, item_to_insert, left_node)
 
 
-def find_max(tree, current_node, max=None):
-    left_node, right_node = tree.get(current_node, (None, None))
+def find_max_iterate(tree, current_node):
+    max = current_node
+
+    iterate_node = current_node
+    while tree.get(iterate_node) != None:
+        if tree[iterate_node][1] is None:
+            break
+        elif max <= tree[iterate_node][1]:
+            max = tree[iterate_node][1]
+            iterate_node = tree[iterate_node][1]
+
+    return max
+
+
+def find_max_recurse(tree, current_node, max=None):
+    _, right_node = tree.get(current_node, (None, None))
 
     if max is None:
         max = current_node
 
     if current_node and max <= current_node:
         max = current_node
-        return find_max(tree, right_node, max)
+        return find_max_recurse(tree, right_node, max)
 
     if right_node is None:
         return max

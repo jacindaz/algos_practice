@@ -129,10 +129,11 @@ def test_insert(tree, root, item_to_insert, expected):
 
 
 @pytest.mark.parametrize("tree,current_node,expected", [
-    (
+    pytest.param(
         {20: (10, 30), 10: (8, None)},
         20,
-        30
+        30,
+        id="max_right_leaf"
     ),
     (
         {25: (0, None)},
@@ -159,8 +160,11 @@ def test_insert(tree, root, item_to_insert, expected):
     )
 ])
 def test_bst_max(tree, current_node, expected):
-    actual_max = bst.find_max(tree, current_node)
-    assert actual_max == expected
+    actual_max_iterate = bst.find_max_iterate(tree, current_node)
+    actual_max_recurse = bst.find_max_recurse(tree, current_node)
+
+    assert actual_max_iterate == expected
+    assert actual_max_recurse == expected
 
 
 @pytest.mark.parametrize("tree,expected", [
