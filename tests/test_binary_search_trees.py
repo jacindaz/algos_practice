@@ -167,12 +167,36 @@ def test_bst_max(tree, current_node, expected):
     assert actual_max_recurse == expected
 
 
-@pytest.mark.parametrize("tree,expected", [
-    ([20, 10, 8, 30], 8),
-    ([25, 0], 0),
-    ([20, 12, 10, 8], 8),
-    ([1], 1)
+@pytest.mark.parametrize("tree,current_node,expected", [
+    (
+        {20: (10, 30), 10: (8, None)},
+        20,
+        8,
+    ),
+    (
+        {25: (0, None)},
+        25,
+        0
+    ),
+    (
+        {10: (8, None), 12: (10, None), 20: (12, None)},
+        20,
+        8
+    ),
+    (
+        {1: (None, None)},
+        1,
+        1
+    ),
+    (
+        {
+            4: (1, 5), 10: (6, None), 6: (4, 9),
+            20: (10, 22), 22: (21, 25)
+        },
+        20,
+        1
+    )
 ])
-def test_bst_min(tree, expected):
-    actual_min = bst.find_min(tree)
+def test_bst_min(tree, current_node, expected):
+    actual_min = bst.find_min_recurse(tree, current_node)
     assert actual_min == expected
