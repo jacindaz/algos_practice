@@ -198,5 +198,8 @@ def test_bst_max(tree, current_node, expected):
     )
 ])
 def test_bst_min(tree, current_node, expected):
-    actual_min = bst.find_min_recurse(tree, current_node)
-    assert actual_min == expected
+    actual_min_recurse = bst.find_min_recurse(tree, current_node)
+    actual_min_iterate = bst.find_min_iterate(tree, current_node, current_node)
+
+    assert actual_min_recurse == expected
+    assert actual_min_iterate == expected

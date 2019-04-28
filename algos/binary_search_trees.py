@@ -72,6 +72,15 @@ def find_max_recurse(tree, current_node, max=None):
         return max
 
 
+def find_min_iterate(tree, current_node, min_node):
+    while current_node != None:
+        if min_node >= current_node:
+            min_node = current_node
+            left_node, _ = tree.get(current_node, (None, None))
+            current_node = left_node
+    return min_node
+
+
 def find_min_recurse(tree, current_node, min_node = None):
     left_node, _ = tree.get(current_node, (None, None))
 
