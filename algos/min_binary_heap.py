@@ -56,3 +56,68 @@ def insert(existing_heap, new_item):
     print("\n-------------final tree-------------")
     print(f"final_tree: {final_tree}")
     return final_tree
+
+
+def percolate_down(existing_heap, item_index=1):
+    item = existing_heap[item_index]
+
+    print(f"\nexisting_heap: {existing_heap}, line 64")
+    print(f"item: {item}, item_index: {item_index}")
+
+    # travel down the tree
+    # continue down left node
+    left_child_index = item_index*2
+    left_child = existing_heap[left_child_index]
+    print(f"\nleft_child_index: {left_child_index}, left_child: {left_child}")
+
+    right_child_index = (item_index * 2) + 1
+    right_child = existing_heap[right_child_index]
+
+    # swap until the left child is not
+    #   smaller than the item
+    if left_child < item:
+        existing_heap[left_child_index] = item
+        existing_heap[item_index] = left_child
+        print(f"\nexisting_heap: {existing_heap}, line 78")
+
+        percolate_down(existing_heap, left_child_index)
+    # else if right child < item
+    elif right_child < item:
+        existing_heap[item_index] = right_child
+        existing_heap[right_child_index] = item
+
+    return existing_heap
+
+    # lastly, check if right child <= item
+    #   if so, swap
+# print(percolate_down([0,27,9,11,14,18,19,21,33,17,5]))
+
+
+def delete_min(existing_heap):
+    print(f"\nexisting_heap before swap: {existing_heap}\n")
+    min_to_del = existing_heap[1]
+
+    # delete
+    # readjust tree:
+    #   -> swap last item in list and root
+    #      (this maintains heap property)
+    #   -> percolate down swapped item
+    #      (this maintains order property)
+
+    # swap
+    last_item = existing_heap[-1]
+    existing_heap[1] = last_item
+    existing_heap[-1] = min_to_del
+    print(f"last_item: {last_item}, min_to_del: {min_to_del}")
+    print(f"existing_heap after swap: {existing_heap}")
+
+    min_deleted = existing_heap[:-1]
+    if len(existing_heap) == 3:
+        return min_deleted
+    else:
+        # percolate down
+        return percolate_down(min_deleted)
+
+
+# print(delete_min([0,5,9,11]))
+# print(delete_min([0,5,9,11,14,18,19,21,33,17,27]))
