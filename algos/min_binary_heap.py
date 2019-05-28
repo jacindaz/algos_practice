@@ -64,25 +64,30 @@ def percolate_down(existing_heap, item_index=1):
     print(f"\nexisting_heap: {existing_heap}, line 64")
     print(f"item: {item}, item_index: {item_index}")
 
+    max_index = len(existing_heap) - 1
+
     # travel down the tree
     # continue down left node
     left_child_index = item_index*2
-    left_child = existing_heap[left_child_index]
-    print(f"\nleft_child_index: {left_child_index}, left_child: {left_child}")
+    left_child = None
+    if left_child_index <= max_index:
+        left_child = existing_heap[left_child_index]
+        print(f"\nleft_child_index: {left_child_index}, left_child: {left_child}")
 
     right_child_index = (item_index * 2) + 1
-    right_child = existing_heap[right_child_index]
+    right_child = None
+    if right_child_index <= max_index:
+        right_child = existing_heap[right_child_index]
 
     # swap until the left child is not
     #   smaller than the item
-    if left_child < item:
+    if left_child and left_child < item:
         existing_heap[left_child_index] = item
         existing_heap[item_index] = left_child
         print(f"\nexisting_heap: {existing_heap}, line 78")
 
         percolate_down(existing_heap, left_child_index)
-    # else if right child < item
-    elif right_child < item:
+    elif right_child and right_child < item:
         existing_heap[item_index] = right_child
         existing_heap[right_child_index] = item
 
