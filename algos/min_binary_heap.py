@@ -93,10 +93,6 @@ def percolate_down(existing_heap, item_index=1):
 
     return existing_heap
 
-    # lastly, check if right child <= item
-    #   if so, swap
-# print(percolate_down([0,27,9,11,14,18,19,21,33,17,5]))
-
 
 def delete_min(existing_heap):
     print(f"\nexisting_heap before swap: {existing_heap}\n")
@@ -120,9 +116,4 @@ def delete_min(existing_heap):
     if len(existing_heap) == 3:
         return min_deleted
     else:
-        # percolate down
         return percolate_down(min_deleted)
-
-
-# print(delete_min([0,5,9,11]))
-# print(delete_min([0,5,9,11,14,18,19,21,33,17,27]))
