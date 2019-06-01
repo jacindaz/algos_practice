@@ -51,6 +51,11 @@ def test_insert(existing_heap, new_item, expected):
         id="two_levels"
     ),
     pytest.param(
+        [0,5,9,11,14,18,19,21],
+        [0,9,14,11,21,18,19],
+        id="three_levels"
+    ),
+    pytest.param(
         [0,5,9,11,14,18,19,21,33,17,27],
         [0,9,14,11,17,18,19,21,33,27],
         id="four_levels"
