@@ -20,30 +20,30 @@ def peek(stack):
 
 def balanced_parentheses(parens_string):
     parens_stack = []
+    opening = "("
+    closing = ")"
 
     for char in parens_string:
         print("\n=================\n")
         print(f"original string: {parens_string}")
         print(f"char: {char}, parens_stack: {parens_stack}")
 
-        # if opening parens, push to stack
-        if char == "(":
+        if char == opening:
             parens_stack.append(char)
             print(f"appended stack: {parens_stack}")
 
-        # if closing parens, pop the stack
-        if char == ")":
-            if len(parens_stack) == 0:
+        if char == closing:
+            if len(parens_stack) == 0: # no items to match
                 return False
 
             last_item = parens_stack[-1]
             print(f"last_item: {last_item}")
 
-            if last_item == "(": # if match
+            if last_item == opening: # match
                 del(parens_stack[-1])
                 print(f"match,deleted last_item, new stack: {parens_stack}")
 
-            elif last_item != "(": # if not match
+            elif last_item != opening: # no match
                 print(f"last item doesn't match, last_item: {last_item}")
                 return False
 
