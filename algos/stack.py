@@ -18,8 +18,6 @@ def peek(stack):
 # print(peek(my_stack))
 
 
-balanced1 = "(()()()())"
-not_balanced1 = "((((((())"
 def balanced_parentheses(parens_string):
     parens_stack = []
 
@@ -34,7 +32,7 @@ def balanced_parentheses(parens_string):
             print(f"appended stack: {parens_stack}")
 
         # if closing parens, pop the stack
-        elif char == ")":
+        if char == ")" and len(parens_stack) > 0:
             last_item = parens_stack[-1]
             print(f"last_item: {last_item}")
             if last_item == "(": # if match
@@ -44,12 +42,11 @@ def balanced_parentheses(parens_string):
             elif last_item != "(": # if not match
                 print(f"last item doesn't match, last_item: {last_item}")
                 return False
+        elif char == ")" and len(parens_stack) == 0:
+            return False
 
     # at the end of the string, stack should be empty
     if len(parens_stack) == 0:
         return True
     else:
         return False
-
-print(balanced_parentheses(balanced1))
-# print(balanced_parentheses(not_balanced1))
