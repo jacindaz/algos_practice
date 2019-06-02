@@ -35,4 +35,5 @@ import pytest
 ])
 def test_balanced_parantheses(parens_string, expected):
     actual_result = stack.balanced_parentheses(parens_string)
+    actual_result = stack.balanced_parentheses2(parens_string)
     assert actual_result == expected
