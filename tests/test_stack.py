@@ -34,9 +34,10 @@ import pytest
     )
 ])
 def test_balanced_parantheses(parens_string, expected):
-    actual_result = stack.balanced_parentheses(parens_string)
-    actual_result = stack.balanced_parentheses2(parens_string)
-    assert actual_result == expected
+    actual_result1 = stack.balanced_parentheses(parens_string)
+    actual_result2 = stack.balanced_parentheses2(parens_string)
+    assert actual_result1 == expected
+    assert actual_result2 == expected
 
 
 @pytest.mark.parametrize("symbols_string,expected", [
@@ -72,5 +73,7 @@ def test_balanced_parantheses(parens_string, expected):
     )
 ])
 def test_balanced_symbols(symbols_string, expected):
-    actual_result = stack.balanced_symbols(symbols_string)
-    assert actual_result == expected
+    actual_result1 = stack.balanced_symbols(symbols_string)
+    actual_result2 = stack.balanced_symbols2(symbols_string)
+    assert actual_result1 == expected
+    assert actual_result2 == expected

@@ -48,8 +48,6 @@ def balanced_parentheses2(parens_string):
     return len(parens_stack) == 0
 
 
-balanced_sym1 = "{ { ( [ ] [ ] ) } ( ) }"
-not_balanced_sym1 = "( [ ) ]"
 def balanced_symbols(symbols_string):
     opening = "{(["
     closing = "})]"
@@ -80,4 +78,24 @@ def balanced_symbols(symbols_string):
                 return False
 
     print(f"\nsymbols_stack length: {len(symbols_stack)}")
+    return len(symbols_stack) == 0
+
+
+def balanced_symbols2(symbols_string):
+    PAIRINGS = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    }
+    symbols_stack = []
+
+    for char in symbols_string:
+        if char in PAIRINGS.keys(): # opening value
+            symbols_stack.append(char)
+        else: # closing value
+            if len(symbols_stack) > 0 and char == PAIRINGS[symbols_stack[-1]]:
+                del(symbols_stack[-1])
+            else: # len(symbols_stack) == 0, OR not a match
+                return False
+
     return len(symbols_stack) == 0
