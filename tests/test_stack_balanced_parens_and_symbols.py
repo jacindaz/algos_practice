@@ -1,4 +1,4 @@
-import algos.stack as stack
+import algos.stack_balanced_parens_and_symbols as stack
 import pytest
 
 @pytest.mark.parametrize("parens_string,expected", [
