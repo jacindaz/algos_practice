@@ -43,6 +43,18 @@ def test_decimal_number_to_binary(decimal_number, expected_binary):
         7,
         '142',
         id="base_7"
+    ),
+    pytest.param(
+        21198,
+        11,
+        '14a21',
+        id="base_11"
+    ),
+    pytest.param(
+        9850,
+        12,
+        '584a',
+        id='base_12'
     )
 ])
 def test_convert_to_base(decimal_number, base, expected_number):
