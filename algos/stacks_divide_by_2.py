@@ -21,4 +21,18 @@ def decimal_number_to_binary(number):
     return binary_number
 
 
-print(decimal_number_to_binary(100))
+def convert_to_base(decimal_number, base):
+    """
+    Convert to any base between 2-16
+    """
+    base_stack = []
+    while decimal_number > 0:
+        remainder = decimal_number % base
+        base_stack.append(remainder)
+        decimal_number = decimal_number // base
+
+    final_conversion = ""
+    while len(base_stack) > 0:
+        final_conversion += str(base_stack.pop())
+
+    return final_conversion
