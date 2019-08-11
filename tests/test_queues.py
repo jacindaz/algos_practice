@@ -38,3 +38,25 @@ def test_queue_length():
     queue2 = queues.Queue([])
     assert queue2.size() == 0
     assert queue2.is_empty() is True
+
+
+@pytest.mark.parametrize("inputs, constant, expected_output", [
+    (
+        ["kenrick", "krithin", "stella", "julia", "val", "jacinda"],
+        -1,
+        "jacinda"
+    ),
+    (
+        ["kenrick", "krithin", "stella", "julia", "val", "jacinda"],
+        1,
+        "krithin"
+    ),
+    (
+        ["kenrick", "krithin", "stella", "julia", "val", "jacinda"],
+        3,
+        "julia"
+    ),
+])
+def test_hot_potato(inputs, constant, expected_output):
+    result = queues.hot_potato(inputs, constant)
+    assert result == expected_output
