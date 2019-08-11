@@ -15,6 +15,9 @@ class Queue(object):
         return len(self._items)
 
 
+# Problem statement:
+# https://bradfieldcs.com/algos/queues/simulating-hot-potato/
+#
 # We will implement a general simulation of Hot Potato.
 # Our program will input a list of names and a constant,
 # call it “num,” to be used for counting. It will return
