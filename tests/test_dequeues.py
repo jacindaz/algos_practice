@@ -45,3 +45,30 @@ def test_dequeue_methods(queue_items, inputs, method_name, expected_outputs):
             dequeue.remove_rear()
 
         assert dequeue._items == expected_outputs[index]
+
+
+@pytest.mark.parametrize("input, expected_output", [
+    pytest.param(
+        "radar",
+        True,
+        id="palindrome1"
+    ),
+    pytest.param(
+        "toot",
+        True,
+        id="palindrome2"
+    ),
+    pytest.param(
+        "aloha",
+        False,
+        id="not_palindrome1"
+    ),
+    pytest.param(
+        "hello",
+        False,
+        id="not_palindrome2"
+    ),
+])
+def test_is_palindrome(input, expected_output):
+    result = dequeues.is_palindrome(input)
+    assert result == expected_output
