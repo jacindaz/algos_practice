@@ -37,29 +37,30 @@ def test_size():
     list.add(99)    # [99, 8, 54, 10, 1]
     assert list.size() == 5
 
-    # list.remove(54) # [99, 8, 10, 1]
-    # assert list.size() == 4
+    list.remove(54) # [99, 8, 10, 1]
+    assert list.size() == 4
 
 
-def test_search():
+def create_list_length_5():
     list = UnOrderedList()
     list.add(1)     # [1]
     list.add(10)    # [10, 1]
     list.add(54)    # [54, 10, 1]
     list.add(8)     # [8, 54, 10, 1]
     list.add(99)    # [99, 8, 54, 10, 1]
+
+    return list
+
+
+def test_search():
+    list = create_list_length_5()  # [99, 8, 54, 10, 1]
 
     assert list.search(54) == True
     assert list.search(22) == False
 
 
 def test_remove():
-    list = UnOrderedList()
-    list.add(1)     # [1]
-    list.add(10)    # [10, 1]
-    list.add(54)    # [54, 10, 1]
-    list.add(8)     # [8, 54, 10, 1]
-    list.add(99)    # [99, 8, 54, 10, 1]
+    list = create_list_length_5()  # [99, 8, 54, 10, 1]
 
     # remove tail
     list.remove(1)  # [99, 8, 54, 10]
@@ -80,3 +81,7 @@ def test_remove():
     assert not list.search(9)
     assert list.head.value == 8
     assert list.search(10)
+
+
+def test_append():
+    list = create_list_length_5()  # [99, 8, 54, 10, 1]
