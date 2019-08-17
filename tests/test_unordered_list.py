@@ -119,3 +119,16 @@ def test_insert():
     list.insert(0, 4)   # [4, 1, 3, 2]
     assert list.size() == 4
     assert list.head.value == 4
+
+
+def test_pop():
+    list = create_list_length_5()  # [99, 8, 54, 10, 1]
+    assert list.size() == 5
+
+    last_item = list.pop()         # [99, 8, 54, 10]
+    assert list.size() == 4
+    assert last_item == 1
+
+    last_item2 = list.pop()        # [99, 8, 54]
+    assert list.size() == 3
+    assert last_item2 == 10
