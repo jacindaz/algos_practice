@@ -39,3 +39,16 @@ def test_size():
 
     # list.remove(54) # [99, 8, 10, 1]
     # assert list.size() == 4
+
+
+def test_search():
+    list = UnOrderedList()
+    list.add(1)     # [1]
+    list.add(10)    # [10, 1]
+    list.add(54)    # [54, 10, 1]
+    list.add(8)     # [8, 54, 10, 1]
+    list.add(99)    # [99, 8, 54, 10, 1]
+
+    assert list.search(54) == True
+    assert list.search(22) == False
+

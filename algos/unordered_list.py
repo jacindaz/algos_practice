@@ -43,7 +43,13 @@ class UnOrderedList(object):
         search(item) searches for the item in the list.
         It needs the item and returns a boolean value.
         """
-        pass
+        current_node = self.head
+        while current_node:
+            if current_node.value == item:
+                return True
+            current_node = current_node.next
+
+        return False
 
     def is_empty(self):
         """
@@ -53,20 +59,6 @@ class UnOrderedList(object):
         return self.head is None
 
     def size(self):
-        """
-        size() returns the number of items in the list. It
-        needs no parameters and returns an integer.
-
-        """
-        if self.is_empty():
-            return 0
-        else:
-            counter = 0
-            current_node = self.head
-            while current_node:
-                counter += 1
-                current_node = current_node.next
-
             return counter
 
     def append(self, item):
