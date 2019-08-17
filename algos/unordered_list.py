@@ -92,7 +92,12 @@ class UnOrderedList(object):
         the item and returns nothing. Assume the item is not
         already in the list.
         """
-        pass
+        current_node = self.head
+        previous_node = None
+        while current_node:
+            previous_node, current_node = current_node, current_node.next
+
+        previous_node.next = Node(item)
 
     def index(self, item):
         """

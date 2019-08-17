@@ -85,3 +85,12 @@ def test_remove():
 
 def test_append():
     list = create_list_length_5()  # [99, 8, 54, 10, 1]
+    assert list.size() == 5
+
+    list.append(30)
+    assert list.size() == 6
+    assert list.search(30)
+
+    list.append(2)
+    assert list.size() == 7
+    assert list.search(2)
