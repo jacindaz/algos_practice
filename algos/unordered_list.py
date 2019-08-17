@@ -18,7 +18,17 @@ class UnOrderedList(object):
         the item and returns nothing. Assume the item
         is not already in the list.
         """
-        pass
+
+        # add always adds at the head of the list
+        # because otherwise need to traverse the entire list
+
+        if self.is_empty():
+            self.head = Node(item)
+        else:
+            new_head = Node(item)
+            new_head.next = self.head
+
+            self.head = new_head
 
     def remove(self, item):
         """
