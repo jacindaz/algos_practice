@@ -136,7 +136,7 @@ class UnOrderedList(object):
                 previous_node, current_node = current_node, current_node.next
                 index += 1
 
-    def pop(self, pos=None):
+    def pop_last_item(self):
         """
         pop() removes and returns the last item in the list.
         It needs nothing and returns an item. Assume the list
@@ -146,14 +146,33 @@ class UnOrderedList(object):
         It needs the position and returns the item. Assume
         the item is in the list.
         """
-        if pos:
-            pass
-        else:
-            current_node = self.head
-            previous_node = None
-            while current_node:
-                if current_node.next is None:
-                    break
-                previous_node, current_node = current_node, current_node.next
-            previous_node.next = None
-            return current_node.value
+        current_node = self.head
+        previous_node = None
+        while current_node:
+            if current_node.next is None:
+                break
+            previous_node, current_node = current_node, current_node.next
+        previous_node.next = None
+        return current_node.value
+
+    def pop(self, pos):
+        """
+        pop(pos) removes and returns the item at position pos.
+        It needs the position and returns the item. Assume
+        the item is in the list.
+        """
+        current_node = self.head
+        previous_node = None
+        index = 0
+        while True:
+            if index == pos:
+                if previous_node:
+                    previous_node.next = current_node.next
+                else:
+                    # at the head
+                    self.head = current_node.next
+                return current_node.value
+            index += 1
+            previous_node, current_node = current_node, current_node.next
+
+

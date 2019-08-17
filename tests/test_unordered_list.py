@@ -121,14 +121,30 @@ def test_insert():
     assert list.head.value == 4
 
 
-def test_pop():
-    list = create_list_length_5()  # [99, 8, 54, 10, 1]
+def test_pop_last_item():
+    list = create_list_length_5()       # [99, 8, 54, 10, 1]
     assert list.size() == 5
 
-    last_item = list.pop()         # [99, 8, 54, 10]
+    last_item = list.pop_last_item()    # [99, 8, 54, 10]
     assert list.size() == 4
     assert last_item == 1
 
-    last_item2 = list.pop()        # [99, 8, 54]
+    last_item2 = list.pop_last_item()    # [99, 8, 54]
     assert list.size() == 3
     assert last_item2 == 10
+
+
+def test_pop_with_pos():
+    list = create_list_length_5()       # [99, 8, 54, 10, 1]
+
+    # remove tail
+    assert list.pop(4) == 1             # [99, 8, 54, 10]
+    assert list.size() == 4
+
+    # remove head
+    assert list.pop(0) == 99            # [8, 54, 10]
+    assert list.size() == 3
+
+    # remove in the middle
+    assert list.pop(1) ==54             # [8, 1]
+    assert list.size() == 2
