@@ -22,3 +22,20 @@ def test_add():
     list.add(3) # [3, 2, 1]
     assert list.head.value == 3
     assert list.head.next.value == 2
+
+
+def test_size():
+    list = UnOrderedList()
+    list.add(1)
+    assert list.size() == 1
+
+    list.add(10)    # [10, 1]
+    list.add(54)    # [54, 10, 1]
+    assert list.size() == 3
+
+    list.add(8)     # [8, 54, 10, 1]
+    list.add(99)    # [99, 8, 54, 10, 1]
+    assert list.size() == 5
+
+    # list.remove(54) # [99, 8, 10, 1]
+    # assert list.size() == 4

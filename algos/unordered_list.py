@@ -58,7 +58,16 @@ class UnOrderedList(object):
         needs no parameters and returns an integer.
 
         """
-        pass
+        if self.is_empty():
+            return 0
+        else:
+            counter = 0
+            current_node = self.head
+            while current_node:
+                counter += 1
+                current_node = current_node.next
+
+            return counter
 
     def append(self, item):
         """
