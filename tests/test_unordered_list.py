@@ -52,3 +52,31 @@ def test_search():
     assert list.search(54) == True
     assert list.search(22) == False
 
+
+def test_remove():
+    list = UnOrderedList()
+    list.add(1)     # [1]
+    list.add(10)    # [10, 1]
+    list.add(54)    # [54, 10, 1]
+    list.add(8)     # [8, 54, 10, 1]
+    list.add(99)    # [99, 8, 54, 10, 1]
+
+    # remove tail
+    list.remove(1)  # [99, 8, 54, 10]
+    assert not list.search(1)
+    assert list.head.value == 99
+    assert list.search(8)
+    assert list.search(54)
+    assert list.search(10)
+
+    # remove item in the middle of list
+    list.remove(54) # [99, 8, 10]
+    assert not list.search(54)
+    assert list.head.value == 99
+    assert list.search(10)
+
+    # remove head
+    list.remove(99) # [8, 10]
+    assert not list.search(9)
+    assert list.head.value == 8
+    assert list.search(10)
