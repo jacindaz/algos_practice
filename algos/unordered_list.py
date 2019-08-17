@@ -174,5 +174,3 @@ class UnOrderedList(object):
                 return current_node.value
             index += 1
             previous_node, current_node = current_node, current_node.next
-
-
