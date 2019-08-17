@@ -102,3 +102,20 @@ def test_index():
     assert list.index(99) == 0
     assert list.index(54) == 2
     assert list.index(1) == 4
+
+
+def test_insert():
+    list = UnOrderedList()
+    list.add(1)         # [1]
+
+    list.insert(1, 2)   # [1, 2]
+    assert list.size() == 2
+    assert list.head.next.value == 2
+
+    list.insert(1, 3)   # [1, 3, 2]
+    assert list.size() == 3
+    assert list.head.next.value == 3
+
+    list.insert(0, 4)   # [4, 1, 3, 2]
+    assert list.size() == 4
+    assert list.head.value == 4

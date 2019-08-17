@@ -72,7 +72,6 @@ class UnOrderedList(object):
         """
         size() returns the number of items in the list. It
         needs no parameters and returns an integer.
-
         """
         if self.is_empty():
             return 0
@@ -119,9 +118,23 @@ class UnOrderedList(object):
         It needs the item and returns nothing. Assume the
         item is not already in the list and there are enough
         existing items to have position pos.
-
         """
-        pass
+        current_node = self.head
+        previous_node = None
+        index = 0
+        while True:
+            if index == pos:
+                new_item = Node(item)
+                if previous_node:
+                    previous_node.next = new_item
+                else:
+                    self.head = new_item
+
+                new_item.next = current_node
+                break
+            else:
+                previous_node, current_node = current_node, current_node.next
+                index += 1
 
     def pop(self):
         """
@@ -136,6 +149,5 @@ class UnOrderedList(object):
         pop(pos) removes and returns the item at position pos.
         It needs the position and returns the item. Assume
         the item is in the list.
-
         """
         pass
