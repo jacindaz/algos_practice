@@ -105,7 +105,13 @@ class UnOrderedList(object):
         It needs the item and returns the index. Assume the
         item is in the list.
         """
-        pass
+        current_node = self.head
+        index = 0
+        while current_node:
+            if current_node.value == item:
+                return index
+            index += 1
+            current_node = current_node.next
 
     def insert(self, pos, item):
         """

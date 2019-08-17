@@ -94,3 +94,11 @@ def test_append():
     list.append(2)
     assert list.size() == 7
     assert list.search(2)
+
+
+def test_index():
+    list = create_list_length_5()  # [99, 8, 54, 10, 1]
+
+    assert list.index(99) == 0
+    assert list.index(54) == 2
+    assert list.index(1) == 4
