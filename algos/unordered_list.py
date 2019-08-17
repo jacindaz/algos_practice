@@ -36,30 +36,17 @@ class UnOrderedList(object):
         the item and modifies the list. Assume the item is
         present in the list.
         """
-
-        # search for the node to remove
         current_node = self.head
         previous_node = None
-        while current_node:
-            print(f"\ncurrent_node: {current_node.value}")
+        while True:
             if current_node.value == item:
-                # need to fix pointers after node is removed
-                if previous_node:
-                    previous_node.next = current_node.next
-                    current_node.next = None
-                    break
-                else:
-                    next_item = current_node.next
-                    self.head = next_item
-                    break
-            else:
-                # keep track of previous/current node
-                previous_node = current_node
-                current_node = current_node.next
+                break
+            previous_node, current_node = current_node, current_node.next
 
-                print(f"previous_node: {previous_node.value}")
-                print(f"current_node: {current_node.value}")
-
+        if previous_node:
+            previous_node.next = current_node.next
+        else:
+            self.head = current_node.next
 
     def search(self, item):
         """
