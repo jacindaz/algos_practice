@@ -22,3 +22,21 @@ def test_add():
 
     list1.add(34)                 # [1, 7, 18, 34]
     assert list1.size() == 4
+
+
+def test_add_old():
+    list1 = OrderedList()
+    list1.add_old(1)                  # [1]
+    assert list1.head.value == 1
+
+    list1.add_old(18)                 # [1, 18]
+    assert list1.head.value == 1
+    assert list1.head.next.value == 18
+
+    list1.add_old(7)                  # [1, 7, 18]
+    assert list1.head.value == 1
+    assert list1.head.next.value == 7
+    assert list1.size() == 3
+
+    list1.add_old(34)                 # [1, 7, 18, 34]
+    assert list1.size() == 4
