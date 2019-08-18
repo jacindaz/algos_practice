@@ -3,7 +3,19 @@ from algos.ordered_list import OrderedList
 
 def test_search():
     list1 = OrderedList()
-    pass
+    list1.add(1)
+    list1.add(20)
+    list1.add(14)
+    list1.add(58)
+    list1.add(30)
+    assert list1.size() == 5     # [1, 14, 20, 30, 58]
+
+    assert list1.search(14)
+    assert list1.search(58)
+
+    assert list1.search(0) is False
+    assert list1.search(15) is False
+    assert list1.search(100) is False
 
 
 def test_add():

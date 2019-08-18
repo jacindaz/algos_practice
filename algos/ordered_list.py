@@ -5,7 +5,20 @@ class OrderedList(UnOrderedList):
         UnOrderedList.__init__(self)
 
     def search(self, item):
-        pass
+        """
+        search for item, stop searching if item is
+        larger than current node, but not found
+        """
+        current_node = self.head
+        while current_node:
+            if current_node.value > item:
+                return False
+            elif current_node.value == item:
+                return True
+            current_node = current_node.next
+
+        return False
+
 
     def add_old(self, item):
         if self.head is None:
