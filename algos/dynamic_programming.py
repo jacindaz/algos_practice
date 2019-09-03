@@ -20,4 +20,17 @@ def num_paths(height, width):
 
 
 def num_paths_dp(height, width):
-    pass
+    saved_paths = [[1] * (width+1) for h in range(height+1)]
+    for he in range(height+1):
+        for wi in range(width+1):
+            if he == 0 or wi == 0:
+                continue
+
+            # calculate "previous value": look ABOVE and LEFT
+            above_value = saved_paths[he-1][wi]
+            left_value = saved_paths[he][wi-1]
+
+            new_value = above_value + left_value
+            saved_paths[he][wi] = new_value
+
+    return saved_paths[height][width]
