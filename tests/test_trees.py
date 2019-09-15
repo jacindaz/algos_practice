@@ -31,6 +31,12 @@ def test_node():
 
 @pytest.mark.parametrize("root, child_value, expected_new_root", [
     pytest.param(
+        [],
+        "new_value",
+        ["new_value"],
+        id="no_left_subtree"
+    ),
+    pytest.param(
         [3], "new_value", [3, ["new_value"]],
         id="no_left_child"
     ),
