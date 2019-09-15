@@ -20,17 +20,11 @@ class Node:
 
 
 def insert_left(root, child_value):
-    if len(root) == 0:
-        root = [child_value]
-    elif len(root) == 1:
-        root.append([child_value])
+    left_subtree = root[1]
+    if len(left_subtree) == 0:
+        root[1] = [child_value, [], []]
     else:
         current_left_child = root[1]
-        new_left_child = [child_value, current_left_child]
+        new_left_child = [child_value, current_left_child, []]
         root[1] = new_left_child
-
     return root
-
-
-def insert_right(root, child_value):
-    pass
