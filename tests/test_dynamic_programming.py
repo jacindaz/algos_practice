@@ -29,3 +29,6 @@ def test_fib(input, expected):
 def test_num_paths(height, width, expected):
     actual_recursive = dp.num_paths(height, width)
     assert actual_recursive == expected
+
+    actual_dp = dp.num_paths_dp(height, width)
+    assert actual_dp == expected
