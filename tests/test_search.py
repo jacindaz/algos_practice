@@ -24,6 +24,9 @@ def test_sequential_search_ordered(ordered_list, item_to_find, expected):
     ([0,1,2,8,13,17,19,32,42], 42, True),
     ([0,1,2,8,13,17,19,32,42], 100, False),
     ([0,1,2,8,13,17,19,32,42], -8, False),
+    ([0,1,2,8,13,13,13,17,19,32,42,42], 42, True),
+    ([0,1,2,8,13,13,13,17,19,32,42,42], 14, False),
+    ([0,1,2,8,13,13,13,17,19,32,42,42], 12, False),
 ])
 def test_binary_search(list, item_to_find, expected):
     actual1 = search.binary_search_longest(list, item_to_find)
