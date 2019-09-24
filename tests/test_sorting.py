@@ -1,5 +1,5 @@
 import pytest
-from algos.sorting import bubble_sort
+from algos.sorting import bubble_sort, selection_sort
 
 
 @pytest.mark.parametrize("my_list, expected", [
@@ -13,5 +13,8 @@ from algos.sorting import bubble_sort
     )
 ])
 def test_bubble_sort(my_list, expected):
-    actual = bubble_sort(my_list)
-    assert actual == expected
+    actual_bubble = bubble_sort(my_list)
+    assert actual_bubble == expected
+
+    actual_selection = selection_sort(my_list)
+    assert actual_selection == expected
