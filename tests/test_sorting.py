@@ -12,7 +12,7 @@ from algos.sorting import bubble_sort, selection_sort
         [-38,-4,12,12,22,50,100,123]
     )
 ])
-def test_bubble_sort(my_list, expected):
+def test_sorting(my_list, expected):
     actual_bubble = bubble_sort(my_list)
     assert actual_bubble == expected
 
